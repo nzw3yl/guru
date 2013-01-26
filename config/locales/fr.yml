@@ -1,23 +1,23 @@
-# Sample localization file for English. Add more files in this directory for other locales.
+# Sample localization file for French Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-en:
+fr:
   activerecord:
     attributes:
       user:
-        name: "Name"
+        name: "Nom"
         email: "Email"
   layouts:
     navigation:
       login: "Login"
       logout: "Logout"
-      sign_up: "Sign up"
-      edit_account: "Edit account"
+      sign_up: "Sign Up"
+      edit_account: "Edit Account"
       administration: "Admin"
   simple_form:
     labels:
       defaults:
-        remember_me: 'Remember me?'
+        remember_me: 'Rememeber Me?'
       user:
         name: 'Name'
         email: 'Email'

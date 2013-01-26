@@ -1,5 +1,7 @@
 %h3 User
 %p
-  User: #{@user.name}
+  = User.human_attribute_name(:name) + ":" 
+  = @user.name
 %p
-  Email: #{@user.email if @user.email}
+  = User.human_attribute_name(:email) + ":"
+  = @user.email if @user.email

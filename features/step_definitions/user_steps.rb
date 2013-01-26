@@ -13,7 +13,7 @@ def create_unconfirmed_user
   create_visitor
   delete_user
   sign_up
-  visit '/users/sign_out'
+  visit("/#{@locale}/users/sign_out")
 end
 
 def create_user
@@ -29,7 +29,7 @@ end
 
 def sign_up
   delete_user
-  visit '/users/sign_up'
+  visit("/#{@locale}/users/sign_up")
   fill_in "Name", :with => @visitor[:name]
   fill_in "Email", :with => @visitor[:email]
   fill_in "user_password", :with => @visitor[:password]
@@ -39,32 +39,41 @@ def sign_up
 end
 
 def sign_in
-  visit '/users/sign_in'
+  visit("/#{@locale}/users/sign_in")
   fill_in "Email", :with => @visitor[:email]
   fill_in "Password", :with => @visitor[:password]
   click_button "Sign in"
 end
 
+def set_locale
+  @locale = ENV['CUCUMBER_LOCALE'] || 'en'
+end
+
 ### GIVEN ###
 Given /^I am not logged in$/ do
-  visit '/users/sign_out'
+  set_locale
+  visit("/#{@locale}/users/sign_out")
 end
 
 Given /^I am logged in$/ do
+  set_locale
   create_user
   sign_in
 end
 
 Given /^I exist as a user$/ do
+  set_locale
   create_user
 end
 
 Given /^I do not exist as a user$/ do
+  set_locale
   create_visitor
   delete_user
 end
 
 Given /^I exist as an unconfirmed user$/ do
+  set_locale
   create_unconfirmed_user
 end
 
@@ -75,7 +84,7 @@ When /^I sign in with valid credentials$/ do
 end
 
 When /^I sign out$/ do
-  visit '/users/sign_out'
+  visit("/#{@locale}/users/sign_out")
 end
 
 When /^I sign up with valid user data$/ do
@@ -108,7 +117,7 @@ When /^I sign up with a mismatched password confirmation$/ do
 end
 
 When /^I return to the site$/ do
-  visit '/'
+  visit("/#{@locale}")
 end
 
 When /^I sign in with a wrong email$/ do
@@ -129,7 +138,7 @@ When /^I edit my account details$/ do
 end
 
 When /^I look at the list of users$/ do
-  visit '/'
+  visit("/#{@locale}")
 end
 
 ### THEN ###

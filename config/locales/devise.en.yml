@@ -26,6 +26,11 @@ en:
     sessions:
       signed_in: 'Signed in successfully.'
       signed_out: 'Signed out successfully.'
+      new:
+            title: "Sign In"
+            sign_in: "Sign in"
+            password_hint: "Minimum 6 Characters"
+            email_placeholder: "user@example.com"
     passwords:
       send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
       updated: 'Your password was changed successfully. You are now signed in.'
@@ -44,6 +49,23 @@ en:
       updated: 'You updated your account successfully.'
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address."
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+      new:
+          title: "Sign Up"
+          sign_up: "Sign up"
+      edit:
+        new_password_hint: "leave it blank if you don't want to change it"
+        current_password_hint: "we need your current password to confirm your changes"
+        back: "Back"
+        cancel_my_account: "Cancel my account"
+        confirm: "Are You Sure?"
+    shared:
+      links:
+        sign_in: "Sign in"
+        sign_up: "Sign up"
+        forgot_password: "Forgot Your Password?"
+        no_confirmation: "Didn't Recieve Confirmation Instructions?"
+        no_unlock: "Didn't Receive Unlock Instructions?"
+        sign_in_provider: "Sign in with #{provider.to_s.titleize}"
     unlocks:
       send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
       unlocked: 'Your account has been unlocked successfully. Please sign in to continue.'

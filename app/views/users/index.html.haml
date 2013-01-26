@@ -3,10 +3,14 @@
   %table.table.table-condensed
     %thead
       %tr
-        %th Username
-        %th Email
-        %th Registered
-        %th Role
+        %th 
+          = User.human_attribute_name(:name)
+        %th 
+          = User.human_attribute_name(:email)
+        %th 
+          = User.human_attribute_name(:created_at)
+        %th 
+          = t(".role")
         %th
         %th
     %tbody

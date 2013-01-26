@@ -1,0 +1,38 @@
+# Sample localization file for German. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+de:
+  activerecord:
+    attributes:
+      user:
+        name: "Benutzername"
+        email: "E-mail"
+  layouts:
+    navigation:
+      login: "Login"
+      logout: "Logout"
+      sign_up: "Sign Up"
+      edit_account: "Edit Account"
+      administration: "Admin"
+  simple_form:
+    labels:
+      defaults:
+        remember_me: "zi rememberin"
+      user:
+        name: 'Benutzername'
+        email: 'E-mail'
+        password: 'Passwort'
+        password_confirmation: 'Passwort bestätigen'
+        current_password: 'Derzeitiges Passwort'
+    hints:
+      user:
+        username: 'Benutzername'
+        password: 'No special characters, please.'
+    placeholders:
+      user:
+        name: 'Ihren Benutzernamen'
+        password: '****'
+        email: 'e-mail-adresse'
+    buttons:
+      cancel: 'Cancel'
+      submit: 'Save'  

@@ -1,4 +1,6 @@
 %h3 Home
 - @users.each do |user|
   %p
-    User: #{link_to user.name, user}
+    = User.human_attribute_name(:name) + ":"
+    = link_to user.name, user
+  

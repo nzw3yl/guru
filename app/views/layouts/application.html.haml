@@ -20,6 +20,13 @@
             .span12
               = render 'layouts/messages'
               = yield
-          %footer
       / ! end of .container
     / ! end of #main
+    %footer
+      .container
+        .content
+          = link_to_unless_current "English", locale: :en 
+          = link_to_unless_current "Français", locale: :fr
+          = link_to_unless_current "Deutsch", locale: :de
+          = link_to_unless_current "Español", locale: :es
+
