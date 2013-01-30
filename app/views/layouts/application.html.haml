@@ -16,17 +16,18 @@
     #main{:role => "main"}
       .container
         .content
-          .row
+          .row-fluid
             .span12
               = render 'layouts/messages'
-              = yield
-      / ! end of .container
-    / ! end of #main
-    %footer
-      .container
-        .content
-          = link_to_unless_current "English", locale: :en 
-          = link_to_unless_current "Français", locale: :fr
-          = link_to_unless_current "Deutsch", locale: :de
-          = link_to_unless_current "Español", locale: :es
+              .row-fluid
+                .span4
+                  = render 'layouts/sidebar'
+                .span8
+                  = yield
+      .row-fluid
+        %hr
+      .row-fluid
+        .span8.offset4
+          = render 'layouts/footer'
+
 

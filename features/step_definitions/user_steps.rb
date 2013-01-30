@@ -42,7 +42,7 @@ def sign_in
   visit("/#{@locale}/users/sign_in")
   fill_in "Email", :with => @visitor[:email]
   fill_in "Password", :with => @visitor[:password]
-  click_button "Sign in"
+  click_button "Login"
 end
 
 def set_locale
@@ -78,6 +78,10 @@ Given /^I exist as an unconfirmed user$/ do
 end
 
 ### WHEN ###
+When /^I am on the homepage$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
 When /^I sign in with valid credentials$/ do
   create_visitor
   sign_in
@@ -138,10 +142,17 @@ When /^I edit my account details$/ do
 end
 
 When /^I look at the list of users$/ do
-  visit("/#{@locale}")
+  create_visitor
+  sign_in
+  visit("/#{@locale}/users")
 end
 
 ### THEN ###
+
+Then /^I should see my total score$/ do
+  pending # express the regexp above with the code you wish you had
+end
+
 Then /^I should be signed in$/ do
   page.should have_content "Logout"
   page.should_not have_content "Sign up"

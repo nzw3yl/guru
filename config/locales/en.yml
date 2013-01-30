@@ -7,6 +7,10 @@ en:
       user:
         name: "Name"
         email: "Email"
+  helpers:
+    submit:
+      user:
+        create: "Sign up"
   layouts:
     navigation:
       login: "Login"
@@ -14,10 +18,13 @@ en:
       sign_up: "Sign up"
       edit_account: "Edit account"
       administration: "Admin"
+    splash:
+      sign_in: "Login"
+      sign_up: "Sign up"
   simple_form:
     labels:
       defaults:
-        remember_me: 'Remember me?'
+        remember_me: 'Remember me'
       user:
         name: 'Name'
         email: 'Email'
@@ -30,6 +37,7 @@ en:
         password: 'No special characters, please.'
     placeholders:
       user:
-        name: 'Your username'
-        password: '****'
-        email: 'email address'
+        name: 'Full name'
+        password: 'Password'
+        password_confirmation: 'Password confirmation'
+        email: 'Email address'

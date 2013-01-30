@@ -1,0 +1,48 @@
+!!!
+%html
+  %head
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+      %title= content_for?(:title) ? yield(:title) : "Guru"
+      %meta{:content => content_for?(:description) ? yield(:description) : "Guru", :name => "description"}
+        = stylesheet_link_tag "application", :media => "all"
+        = javascript_include_tag "application"
+        = csrf_meta_tags
+        = yield(:head)
+  %body{:class => "#{controller_name} #{action_name} splash"}
+    %header.navbar.navbar-fixed-top
+      %nav.navbar-inner
+        .container
+          = render 'layouts/navigation'
+    #main{:role => "main"}
+      .container
+        .test
+          .row-fluid
+            .span12
+              = render 'layouts/messages'
+              .row-fluid
+                .span9
+                  = render 'layouts/welcome'
+                .span3
+                  .row.well
+                    = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }, :namespace => 'signin') do |f|
+                      = f.input :email, :label => false, :autofocus => true
+                      = f.input :password, :label => false, :hint => false
+                      = f.input :remember_me, inline_label: true, label: false, :as => :boolean if devise_mapping.rememberable?
+                      = f.button :submit, t(".sign_in"), :class => 'btn-primary'
+                      = link_to "Forgot your password?", new_password_path('user')
+                  .row.well
+                    %h3 
+                      = t ".sign_up"
+                    = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }, :namespace => 'signup') do |f|
+                      = f.error_notification
+                      = display_base_errors resource
+                      = f.input :name, :label => false
+                      = f.input :email, :label => false, :required => true
+                      = f.input :password, :label => false, :hint => false, :required => true
+                      = f.input :password_confirmation, :label => false, :required => true
+                      = f.button :submit, :class => 'btn-primary'
+      .row-fluid
+        %hr
+      .row-fluid
+        .span8.offset4
+          = render 'layouts/footer'
