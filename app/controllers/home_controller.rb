@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   layout :home_layout
   def index
-    @users = User.all
+    @questions = Question.all
   end
   
   private

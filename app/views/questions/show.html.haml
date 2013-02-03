@@ -1,0 +1,18 @@
+
+
+%p
+  %b Content:
+  = @question.content
+%p
+  %b Image:
+  = @question.image
+%p
+  %b Creator:
+  = User.find(@question.creator_id).name
+%p
+  %b Type:
+  = @question.question_type_id
+
+= link_to 'Edit', edit_question_path(@question)
+\|
+= link_to 'Back', questions_path

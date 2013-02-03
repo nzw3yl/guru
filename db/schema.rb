@@ -11,7 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124142246) do
+ActiveRecord::Schema.define(:version => 20130203022126) do
+
+  create_table "question_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "questions", :force => true do |t|
+    t.text     "content"
+    t.string   "image"
+    t.integer  "creator_id"
+    t.integer  "question_type_id", :default => 1
+    t.string   "code"
+    t.boolean  "public",           :default => true
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
+
+  add_index "questions", ["code"], :name => "index_questions_on_code", :unique => true
+  add_index "questions", ["creator_id"], :name => "index_questions_on_creator_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

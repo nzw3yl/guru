@@ -1,6 +1,18 @@
-%h3 Home
-- @users.each do |user|
-  %p
-    = User.human_attribute_name(:name) + ":"
-    = link_to user.name, user
-  
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+        From
+      %th
+        Question
+      %th
+        Created
+  %tbody
+    - @questions.each do |question|
+      %tr
+        %td 
+          = link_to "[ author ] ", question
+        %td
+          =  truncate(question.content, :length => 60)
+        %td
+          =  time_ago_in_words(question.created_at) + " ago"

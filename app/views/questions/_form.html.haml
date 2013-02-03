@@ -1,0 +1,9 @@
+= simple_form_for(@question) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :content, :input_html => {:rows => "4",  :style => "width: 335px"} 
+    = f.input :image
+    = f.association :question_type
+  .form-actions
+    = f.button :submit
