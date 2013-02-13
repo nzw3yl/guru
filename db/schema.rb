@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130203022126) do
+ActiveRecord::Schema.define(:version => 20130213011412) do
+
+  create_table "question_fields", :force => true do |t|
+    t.string   "answer"
+    t.integer  "question_id"
+    t.boolean  "correct"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "question_types", :force => true do |t|
     t.string   "name"
@@ -22,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20130203022126) do
   create_table "questions", :force => true do |t|
     t.text     "content"
     t.string   "image"
-    t.integer  "creator_id"
+    t.integer  "user_id"
     t.integer  "question_type_id", :default => 1
     t.string   "code"
     t.boolean  "public",           :default => true
@@ -31,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20130203022126) do
   end
 
   add_index "questions", ["code"], :name => "index_questions_on_code", :unique => true
-  add_index "questions", ["creator_id"], :name => "index_questions_on_creator_id"
+  add_index "questions", ["user_id"], :name => "index_questions_on_creator_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -43,6 +51,22 @@ ActiveRecord::Schema.define(:version => 20130203022126) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "taggings", ["question_id"], :name => "index_taggings_on_question_id"
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -58,6 +82,8 @@ ActiveRecord::Schema.define(:version => 20130203022126) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "name"
+    t.string   "avatar"
+    t.integer  "questions_count",        :default => 0,  :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

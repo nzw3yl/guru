@@ -4,6 +4,7 @@ Feature: Create Question
 
     Scenario: I want to sign in and create a question
       Given I exist as a user
-      When I create a new question
+      When I sign in with valid credentials
+      And I create a new question
       Then I should see a new question successful message
       And I should see my question count increase

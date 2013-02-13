@@ -1,0 +1,21 @@
+%strong Questions
+%ul.nav
+  %li.active
+    %table.table.table-condensed.table-bordered
+      %tr.info
+        %td
+          = link_to questions_path do
+            = @user.questions_count
+        %td
+          = link_to questions_path do
+            = 18.to_s
+        %td
+          = link_to questions_path do
+            = 234.to_s 
+      %tr.info
+        %td
+          = link_to "Submitted", questions_path
+        %td  
+          = link_to "Answered", questions_path
+        %td  
+          = link_to "Points", questions_path

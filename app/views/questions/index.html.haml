@@ -14,7 +14,7 @@
     %tbody
       %tr
         %td= question.content
-        %td= question.image
+        %td= image_tag question.image_url(:thumb).to_s
         %td= question.question_type_id
         %td= link_to 'Show', question
         %td= link_to 'Edit', edit_question_path(question)

@@ -1,9 +1,25 @@
-= simple_form_for(@question) do |f|
+= simple_form_for(@question, :html => { :multipart => true }) do |f|
   = f.error_notification
-
   .form-inputs
-    = f.input :content, :input_html => {:rows => "4",  :style => "width: 335px"} 
-    = f.input :image
-    = f.association :question_type
+    #options.form-inputs
+      %button{:type => "button", :class => "btn btn-info", "data-toggle" => "collapse", "data-target" => "#new-tags", :label => "Collapse"}
+        %i.icon-tags
+      %button{:type => "button", :class => "btn btn-info", "data-toggle" => "collapse", "data-target" => "#add-image", :label => "Collapse"}
+        %i.icon-camera
+      %button{:type => "button", :class => "btn btn-info", "data-toggle" => "collapse", "data-target" => "#qtype", :label => "Collapse"}
+        %i.icon-list
+    %br
+    #new-tags.collapse
+      = f.input :tag_list, placeholder: "Enter Topic Tags", label: false
+    #add-image.collapse
+      = f.input(:image, label: false) do 
+        = f.input_field(:image, as: :file, wrapper: false)
+    #qtype.collapse
+      = f.association :question_type, label: false
+    = f.input :content, placeholder: "Enter Question", label: false, :input_html => {:rows => "4",  :style => "width: 300px"} 
+    %div
+      = f.simple_fields_for :answers do |builder|
+        = render 'answer_fields', f: builder
+      = link_to_add_fields "Add Answer", f, :answers  
   .form-actions
-    = f.button :submit
+    = f.button :submit, {:class => "btn-success"}

@@ -20,9 +20,12 @@
             .span12
               = render 'layouts/messages'
               .row-fluid
-                .span4
-                  = render 'layouts/sidebar'
-                .span8
+                .span3
+                  .well
+                    = render 'layouts/top_sidebar' unless !user_signed_in?
+                  .well
+                    = render 'layouts/mid_sidebar' unless !user_signed_in?
+                .span9.well
                   = yield
       .row-fluid
         %hr

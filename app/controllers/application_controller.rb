@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => exception.message
   end
   
-  before_filter :set_locale
+  before_filter :set_locale, :set_user
 
   private
 
@@ -19,5 +19,9 @@ class ApplicationController < ActionController::Base
 
   def default_url_options(options = {})
     {locale: I18n.locale}
+  end
+  
+  def set_user
+    @user ||= current_user
   end
 end

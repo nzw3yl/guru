@@ -6,3 +6,9 @@ $black: #000000;
 $darkblue: #339bb9;
 $darkestblue: #257085;
 $blue-gradient: linear-gradient(top, $darkestblue, $darkblue);
+
+.table-borderless td,
+.table-borderless th,
+.table-borderless tr, {
+    border-top: 0;
+}

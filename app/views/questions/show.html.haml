@@ -1,17 +1,23 @@
 
 
 %p
-  %b Content:
+  %b Question:
   = @question.content
 %p
-  %b Image:
-  = @question.image
+  %b Tags:
+  = @question.tag_list
+%p
+  = image_tag @question.image_url(:preview).to_s
 %p
   %b Creator:
-  = User.find(@question.creator_id).name
+  = User.find(@question.user_id).name
 %p
   %b Type:
   = @question.question_type_id
+%ol{:type => "a"}
+  - @question.answers.each do |choice|
+    %li
+      = choice.answer
 
 = link_to 'Edit', edit_question_path(@question)
 \|

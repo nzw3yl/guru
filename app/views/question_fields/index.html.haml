@@ -1,0 +1,23 @@
+%h1 Listing question_fields
+
+%table
+  %tr
+    %th Answer
+    %th Question
+    %th Correct
+    %th
+    %th
+    %th
+
+  - @question_fields.each do |question_field|
+    %tr
+      %td= question_field.answer
+      %td= question_field.question_id
+      %td= question_field.correct
+      %td= link_to 'Show', question_field
+      %td= link_to 'Edit', edit_question_field_path(question_field)
+      %td= link_to 'Destroy', question_field, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Question field', new_question_field_path

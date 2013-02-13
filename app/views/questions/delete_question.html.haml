@@ -1,0 +1,28 @@
+= simple_form_for(@question, :html => { :multipart => true }) do |f|
+  = f.error_notification
+  #imageModal.modal.hide.fade{tabindex: "-1", role: "dialog", "aria-labelledby" => "imageModalLabel", "aria-hidden" => "true"}
+    .modal-header
+      %button.close{type: "button", "data-dismiss" => "modal", "aria-hidden" => "true"}
+        x
+      %h3#imageModalLabel
+        Upload Image
+    .modal-body
+      = f.input(:image, label: false) do 
+        = f.input_field(:image, as: :file, wrapper: false)
+    .modal-footer
+      %button.btn{"data-dismiss" => "modal", "aria-hidden" => "true"} 
+        Close
+      %button.btn.btn-primary
+        Save changes
+  .form-inputs
+    = f.input :content, placeholder: "Enter Question", label: false, :input_html => {:rows => "4",  :style => "width: 300px"} 
+    = link_to "#imageModal", {:class => "btn", "data-toggle" => "modal"} do
+      %i.icon-camera
+    = f.input :tag_list, placeholder: "Enter Topic Tags", label: false
+    = f.association :question_type, label: false
+    %div
+      = f.simple_fields_for :answers do |builder|
+        = render 'answer_fields', f: builder
+      = link_to_add_fields "Add Answer", f, :answers  
+  .form-actions
+    = f.button :submit

@@ -1,4 +1,23 @@
-= link_to "G", root_path, :class => 'brand'
+- if !user_signed_in?
+  = link_to "G", root_path, :class => 'brand'
+- else
+  %ul.nav.nav-pills
+    = link_to root_path, {:class => 'btn'} do
+      %i.icon-home.icon-large
+      %span.hidden-phone 
+        Home
+    = link_to new_question_path, {:class => 'btn'} do
+      %i.icon-edit.icon-large
+      %span.hidden-phone 
+        Create
+    = link_to edit_user_registration_path, {:class => 'btn'} do
+      %i.icon-user.icon-large
+      %span.hidden-phone 
+        Profile
+    = link_to questions_path, {:class => 'btn'} do
+      %i.icon-search.icon-large
+      %span.hidden-phone 
+        Search
 %ul.nav.pull-right
   - if user_signed_in?
     %li.dropdown

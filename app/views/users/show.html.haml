@@ -1,5 +1,7 @@
 %h3 User
 %p
+  = image_tag @user.avatar_url(:preview).to_s
+%p
   = User.human_attribute_name(:name) + ":" 
   = @user.name
 %p

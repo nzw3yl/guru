@@ -1,0 +1,8 @@
+%fieldset.answer
+  = f.input :answer, wrapper: false do
+    = f.input_field :answer
+    = f.hidden_field :_destroy
+    = link_to "remove", "#", class: "remove_fields btn btn-mini btn-danger"
+  - if @question.question_type_id == 1 
+    = f.input :correct, label: false, inline_label: "Correct?", as: :boolean
+  

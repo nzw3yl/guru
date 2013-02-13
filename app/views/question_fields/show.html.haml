@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Answer:
+  = @question_field.answer
+%p
+  %b Question:
+  = @question_field.question_id
+%p
+  %b Correct:
+  = @question_field.correct
+
+= link_to 'Edit', edit_question_field_path(@question_field)
+\|
+= link_to 'Back', question_fields_path
