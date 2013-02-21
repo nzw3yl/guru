@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213011412) do
+ActiveRecord::Schema.define(:version => 20130218032806) do
 
   create_table "question_fields", :force => true do |t|
     t.string   "answer"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130213011412) do
     t.boolean  "public",           :default => true
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.string   "reference_url"
   end
 
   add_index "questions", ["code"], :name => "index_questions_on_code", :unique => true
@@ -84,6 +85,10 @@ ActiveRecord::Schema.define(:version => 20130213011412) do
     t.string   "name"
     t.string   "avatar"
     t.integer  "questions_count",        :default => 0,  :null => false
+    t.integer  "answers_count"
+    t.integer  "marks_count"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

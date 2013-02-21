@@ -24,3 +24,8 @@ jQuery ->
       regexp = new RegExp($(this).data('id'), 'g')
       $(this).before($(this).data('fields').replace(regexp, time))
       event.preventDefault()
+
+  $('#question_tag_tokens').tokenInput '/tags.json'
+    theme: 'facebook'
+    placeholder: 'Enter Tags'
+    prePopulate: $('#question_tag_tokens').data('load')

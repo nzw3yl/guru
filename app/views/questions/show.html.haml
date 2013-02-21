@@ -7,6 +7,9 @@
   %b Tags:
   = @question.tag_list
 %p
+  %b More info:
+  = @question.reference_url
+%p
   = image_tag @question.image_url(:preview).to_s
 %p
   %b Creator:

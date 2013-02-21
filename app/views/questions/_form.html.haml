@@ -2,21 +2,29 @@
   = f.error_notification
   .form-inputs
     #options.form-inputs
-      %button{:type => "button", :class => "btn btn-info", "data-toggle" => "collapse", "data-target" => "#new-tags", :label => "Collapse"}
-        %i.icon-tags
-      %button{:type => "button", :class => "btn btn-info", "data-toggle" => "collapse", "data-target" => "#add-image", :label => "Collapse"}
-        %i.icon-camera
-      %button{:type => "button", :class => "btn btn-info", "data-toggle" => "collapse", "data-target" => "#qtype", :label => "Collapse"}
-        %i.icon-list
-    %br
+      .btn-group.well
+        %button{:type => "button", :class => "btn btn-disabled", :disabled => true}
+          More Options: 
+          %i.icon-arrow-right
+        %button{:id => "btn-new-tag", :type => "button", :class => "btn btn-info", "data-toggle" => "collapse", "data-target" => "#new-tags", :label => "Collapse"}
+          %i.icon-tags
+        %button{:id => "btn-add-image", :type => "button", :class => "btn btn-info", "data-toggle" => "collapse", "data-target" => "#add-image", :label => "Collapse"}
+          %i.icon-camera
+        %button{:id => "btn-q-type", :type => "button", :class => "btn btn-info", "data-toggle" => "collapse", "data-target" => "#qtype", :label => "Collapse"}
+          %i.icon-list
+        %button{:id => "btn-r-url", :type => "button", :class => "btn btn-info", "data-toggle" => "collapse", "data-target" => "#rurl", :label => "Collapse"}
+          %i.icon-link
     #new-tags.collapse
-      = f.input :tag_list, placeholder: "Enter Topic Tags", label: false
+      = f.input :tag_tokens, placeholder: "Enter Topic Tags", label: false,  :input_html => {"data-load" => @question.tags}
     #add-image.collapse
       = f.input(:image, label: false) do 
         = f.input_field(:image, as: :file, wrapper: false)
     #qtype.collapse
       = f.association :question_type, label: false
+    #rurl.collapse
+      = f.input :reference_url, placeholder: "Learn more URL", label: false
     = f.input :content, placeholder: "Enter Question", label: false, :input_html => {:rows => "4",  :style => "width: 300px"} 
+    #add-image.collapse
     %div
       = f.simple_fields_for :answers do |builder|
         = render 'answer_fields', f: builder

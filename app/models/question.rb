@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  attr_accessible :content, :image, :user_id, :question_type_id, :answers_attributes, :tag_list
+  attr_accessible :content, :image, :user_id, :question_type_id, :answers_attributes, :tag_list, :tag_tokens, :reference_url
   belongs_to :question_type
   belongs_to :user
   counter_culture :user
@@ -8,6 +8,11 @@ class Question < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   has_many :taggings
   has_many :tags, through: :taggings
+  attr_reader :tag_tokens
+  
+  def tag_tokens=(tokens)
+    self.tag_ids = Tag.ids_from_tokens(tokens)
+  end
   
   def self.tagged_with(name)
     Tag.find_by_name!(name).questions

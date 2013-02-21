@@ -1,15 +1,3 @@
 %table.table.table-striped
   - @questions.each do |question|
-    %tr
-      %td 
-        = link_to image_tag(get_user_avatar_url(question.user_id)), user_path(question.user_id)
-      %td
-        %table.table-condensed.table-borderless
-          %tr
-            %td
-              =  raw question.tags.map(&:name).map {|t| link_to t, tag_path(t)}.join(', ')
-          %tr
-            %td 
-              =  question_preview_with_link(question, 120)
-      %td
-        =  time_ago_in_words(question.created_at) + " ago"
+    = render 'questions/question_rows', :question => question

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'pg'
-gem 'thin'
+gem 'thin', :group => [:development, :test]
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -9,6 +9,7 @@ group :assets do
 end
 gem 'jquery-rails'
 gem "unicorn", ">= 4.3.1", :group => :production
+gem 'capistrano'
 gem "haml", ">= 3.1.7"
 gem "haml-rails", ">= 0.3.5", :group => :development
 gem "hpricot", ">= 0.8.6", :group => :development

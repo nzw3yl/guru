@@ -25,6 +25,8 @@
                     = render 'layouts/top_sidebar' unless !user_signed_in?
                   .well
                     = render 'layouts/mid_sidebar' unless !user_signed_in?
+                  .well
+                    = render 'layouts/bottom_sidebar' 
                 .span9.well
                   = yield
       .row-fluid

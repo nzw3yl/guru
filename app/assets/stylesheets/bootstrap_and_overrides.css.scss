@@ -11,4 +11,5 @@ $blue-gradient: linear-gradient(top, $darkestblue, $darkblue);
 .table-borderless th,
 .table-borderless tr, {
     border-top: 0;
+    padding: 0;
 }

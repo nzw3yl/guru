@@ -15,9 +15,11 @@ Guru::Application.routes.draw do
       resources :users
       resources :questions
       resources :question_types
+      resources :tags, :only => :index 
       
 
   end
-  match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
+  
+  match '*path', to: redirect {|params,req| "/#{I18n.default_locale}/#{req.fullpath}"}, constraints: lambda { |req| !req.path.starts_with? "/#{I18n.default_locale}/" }
   match '', to: redirect("/#{I18n.default_locale}")
 end

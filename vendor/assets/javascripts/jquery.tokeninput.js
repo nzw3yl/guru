@@ -26,6 +26,7 @@ var DEFAULT_SETTINGS = {
     searchingText: "Searching...",
     deleteText: "&times;",
     animateDropdown: true,
+    placeholderText: "Enter Tags",
 
 	// Tokenization settings
     tokenLimit: null,
@@ -64,7 +65,8 @@ var DEFAULT_CLASSES = {
     dropdownItem: "token-input-dropdown-item",
     dropdownItem2: "token-input-dropdown-item2",
     selectedDropdownItem: "token-input-selected-dropdown-item",
-    inputToken: "token-input-input-token"
+    inputToken: "token-input-input-token",
+    placeholder: "token-input-placeholder"
 };
 
 // Input box position "enum"
@@ -191,11 +193,23 @@ $.TokenList = function (input, url_or_data, settings) {
         })
         .attr("id", settings.idPrefix + input.id)
         .focus(function () {
+	        if (input_box.val() === $(input).data("settings").placeholderText) {
+			 	input_box
+			 	  .val('')
+			 	  .removeClass($(input).data("settings").classes.placeholder);
+			}
             if (settings.tokenLimit === null || settings.tokenLimit !== token_count) {
                 show_dropdown_hint();
             }
         })
         .blur(function () {
+	        if ($(input).data("settings").placeholderText &&
+			    !input_box.val() &&
+			 	!has_tokens()) {
+			  input_box
+			 	.val($(input).data("settings").placeholderText)
+			 	.addClass($(input).data("settings").classes.placeholder);
+			}
             hide_dropdown();
             $(this).val("");
         })
@@ -633,6 +647,7 @@ $.TokenList = function (input, url_or_data, settings) {
                 position: "absolute",
                 top: $(token_list).offset().top + $(token_list).outerHeight(),
                 left: $(token_list).offset().left,
+                width: $(token_list).width() + parseInt($(token_list).css("padding-left"), 10) + parseInt($(token_list).css("padding-right"), 10),
                 zindex: 999
             })
             .show();
