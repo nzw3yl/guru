@@ -19,9 +19,9 @@
         %tr
           %td
             %span
-              = link_to question do
-                %i.icon-eye-open 
-                %em.muted show 
+              = link_to new_question_attempt_path(question) do
+                %i.icon-check 
+                %em.muted answer
                 |
             %span
               = link_to edit_question_path(question) do

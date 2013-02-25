@@ -1,0 +1,20 @@
+%p#notice= notice
+
+%p
+  %b Answer:
+  = @attempt.answer
+%p
+  %b Question:
+  = @attempt.question_id
+%p
+  %b User:
+  = @attempt.user_id
+%p
+  %b Final:
+  = @attempt.final
+%p
+  %b Score:
+  = @attempt.score
+
+= link_to 'Edit', edit_attempt_path
+

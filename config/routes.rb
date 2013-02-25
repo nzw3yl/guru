@@ -1,7 +1,5 @@
 Guru::Application.routes.draw do
 
-  resources :question_fields
-
 
   scope ":locale", locale: /#{I18n.available_locales.join("|")}/, :shallow_path => ":locale" do
       authenticated :user do
@@ -13,7 +11,10 @@ Guru::Application.routes.draw do
       root :to => "home#index"
       devise_for :users
       resources :users
-      resources :questions
+      resources :questions, :shallow => true do
+        resources :attempts
+      end
+      resources :question_fields
       resources :question_types
       resources :tags, :only => :index 
       

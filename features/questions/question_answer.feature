@@ -1,3 +1,5 @@
+@javascript
+
 Feature: Answer Question
   As a visitor to the website
   I want to answer a question

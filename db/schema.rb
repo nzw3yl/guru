@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130218032806) do
+ActiveRecord::Schema.define(:version => 20130225002808) do
+
+  create_table "attempts", :force => true do |t|
+    t.string   "answer"
+    t.integer  "question_id"
+    t.integer  "user_id"
+    t.boolean  "final",       :default => false
+    t.string   "test_code"
+    t.integer  "score",       :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "attempts", ["question_id", "user_id"], :name => "index_attempts_on_question_id_and_user_id"
+  add_index "attempts", ["question_id"], :name => "index_attempts_on_question_id"
+  add_index "attempts", ["user_id", "test_code"], :name => "index_attempts_on_user_id_and_test_code"
 
   create_table "question_fields", :force => true do |t|
     t.string   "answer"
@@ -89,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20130218032806) do
     t.integer  "marks_count"
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "attempts_count",         :default => 0,  :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

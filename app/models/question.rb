@@ -8,6 +8,7 @@ class Question < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   has_many :taggings
   has_many :tags, through: :taggings
+  has_many :attempts
   attr_reader :tag_tokens
   
   def tag_tokens=(tokens)
@@ -31,5 +32,13 @@ class Question < ActiveRecord::Base
     self.tags = names.split(",").map do |n|
       Tag.where(name: n.strip).first_or_create!
     end
+  end
+  
+  def answer_array
+    correct_answers = []
+    self.answers.each do |answer|
+      correct_answers << answer.id if answer.correct?
+    end
+     return correct_answers
   end
 end
